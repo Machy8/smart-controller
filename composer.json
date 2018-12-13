@@ -1,0 +1,32 @@
+{
+    "name": "machy8/smart-controller",
+    "description": "Small abstraction over Symfony AbstractController with useful features.",
+    "keywords": ["symfony", "controllers"],
+    "license": "BSD-3-Clause",
+    "require": {
+        "php": ">=7.2",
+        "symfony/framework-bundle": ">=4.2",
+        "symfony/twig-bundle": "4.2.*"
+    },
+    "require-dev": {
+        "symplify/easy-coding-standard": "^5.3@dev",
+        "tracy/tracy": "^2.4"
+    },
+    "authors": [
+        {
+            "name": "Vladimír Macháček",
+            "email": "email@machy8.com"
+        }
+    ],
+    "autoload": {
+        "classmap": ["src/"]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "scripts" : {
+        "check-coding-standard": "ecs --config=easy-coding-standard.yml check src"
+    }
+}
