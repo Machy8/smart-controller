@@ -1,6 +1,6 @@
 # Smart Controller
 Summary
-- Before render methid - allows you to set parameters you always need
+- Before render method - allows you to set parameters you always need
 - Template parameters - can be set from multiple places easily
 - Templates autodiscovery - you don't need to write the template path anymore
 - Usefull methods - getRequest(), getTemplatePath(), getRootDirectory(), getTemplateParameter()
@@ -9,7 +9,6 @@ Summary
 ```
 composer require machy8/smart-controller
 ```
-
 
 ## Example
 Symfony original lucky controller [example](https://symfony.com/doc/current/page_creation.html#creating-a-page-route-and-controller).
