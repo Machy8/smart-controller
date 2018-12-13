@@ -9,7 +9,7 @@
         "symfony/twig-bundle": "4.2.*"
     },
     "require-dev": {
-        "symplify/easy-coding-standard": "^5.3@dev",
+        "symplify/easy-coding-standard": "^5.3",
         "tracy/tracy": "^2.4"
     },
     "authors": [
