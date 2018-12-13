@@ -15,7 +15,7 @@ composer require machy8/smart-controller
 ## Example
 Symfony original lucky controller [example](https://symfony.com/doc/current/page_creation.html#creating-a-page-route-and-controller).
 
-```
+```php
 class LuckyController extends AbstractController
 {
 
@@ -34,7 +34,7 @@ class LuckyController extends AbstractController
 
 and now with the **Smart Controller**.
 
-```
+```php
 class LuckyController extends SmartController
 {
 
@@ -53,7 +53,7 @@ class LuckyController extends SmartController
 
 What if we use the **beforeRender** method? The number parameter will be set into both render methods :-)
 
-```
+```php
 class LuckyController extends SmartController
 {
 
@@ -87,11 +87,15 @@ class LuckyController extends SmartController
 ## Notes
 - Every method where renderTemplate is called must start with the prefix `render*` => `renderNumber()`, `renderHomepage()`
 - Templates are searched in the following order: **structure** => **example path**
-    - `<module name>/templates/template.twig` => `src/Controller/templates/template.twig`
-    - `<module name>/templates/<controller name>/template.twig` => `src/Controller/templates/Lucky/template.twig`
-    - `<module name>/templates/<controller name (lowercase)>/template.twig` => `src/Controller/templates/lucky/template.twig`
-    - `<twig default path>/<controller name>/template.twig` => `templates/Lucky/template.twig`
-    - `<twig default path>/<controller name (lowercase)>/template.twig` => `templates/lucky/template.twig`
-    - The whole paths can be even more nested: **Controller path** => **template path**
-        - `src/Modules/HomepageModule/FrontModule/Controller/LuckyController.php` => `src/Modules/HomepageModule/FrontModule/Controller/templates/Lucky/template.twig`
-        -  `src/Modules/HomepageModule/AdminModule/Controller/LuckyController.php` => `src/Modules/HomepageModule/AdminModule/Controller/templates/template.twig`
+```
+<module name>/templates/template.twig => src/Controller/templates/template.twig
+<module name>/templates/<controller name>/template.twig => src/Controller/templates/Lucky/template.twig
+<module name>/templates/<controller name (lowercase)>/template.twig => src/Controller/templates/lucky/template.twig
+<twig default path>/<controller name>/template.twig => templates/Lucky/template.twig
+<twig default path>/<controller name (lowercase)>/template.twig => templates/lucky/template.twig
+```
+- The whole paths can be even more nested: **Controller path** => **template path**
+```
+src/Modules/HomepageModule/FrontModule/Controller/LuckyController.php => src/Modules/HomepageModule/FrontModule/Controller/templates/Lucky/template.twig
+src/Modules/HomepageModule/AdminModule/Controller/LuckyController.php => src/Modules/HomepageModule/AdminModule/Controller/templates/template.twig
+```
