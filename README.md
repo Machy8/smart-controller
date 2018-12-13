@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Machy8/smart-controller.svg?branch=master)](https://travis-ci.org/Machy8/smart-controller)
+
 # Smart Controller
 Summary
 - Before render method - allows you to set parameters you always need
