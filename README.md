@@ -41,7 +41,7 @@ class LuckyController extends SmartController
 	/**
 	 * @Route("/lucky/number")
 	 */
-	public function renderNumber(): response
+	public function renderNumber(): Response
 	{
 		return $this->renderTemplate([
 			'number' => random_int(0, 100)
@@ -64,19 +64,18 @@ class LuckyController extends SmartController
         ]);
     }
 
-	/**
-	 * @Route("/lucky/number")
-	 */
-	public function renderLuckyNumber(): response
-	{
-		return $this->renderTemplate();
-	}
-
+    /**
+     * @Route("/lucky/number")
+     */
+    public function renderLuckyNumber(): Response
+    {
+        return $this->renderTemplate();
+    }
 
     /**
      * @Route("/unlucky/number")
      */
-    public function renderUnluckyNumber(): response
+    public function renderUnluckyNumber(): Response
     {
         return $this->renderTemplate();
     }
