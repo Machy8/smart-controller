@@ -95,6 +95,6 @@ class LuckyController extends SmartController
 ```
 - The whole paths can be even more nested: **Controller path** => **template path**
 ```
-src/Modules/HomepageModule/FrontModule/Controller/LuckyController.php => src/Modules/HomepageModule/FrontModule/Controller/templates/Lucky/template.twig
-src/Modules/HomepageModule/AdminModule/Controller/LuckyController.php => src/Modules/HomepageModule/AdminModule/Controller/templates/template.twig
+src/Modules/AwesomeModule/FrontModule/Controller/AwesomeController.php => src/Modules/AwesomeModule/FrontModule/Controller/templates/Awesome/template.twig
+src/Modules/AwesomeModule/AdminModule/Controller/AwesomeController.php => src/Modules/AwesomeModule/AdminModule/Controller/templates/template.twig
 ```
