@@ -5,8 +5,8 @@
     "license": "BSD-3-Clause",
     "require": {
         "php": ">=7.2",
-        "symfony/framework-bundle": ">=4.2",
-        "symfony/twig-bundle": "4.2.*"
+        "symfony/framework-bundle": "~4.2",
+        "symfony/twig-bundle": "~4.2"
     },
     "require-dev": {
         "symplify/easy-coding-standard": "^5.2",
