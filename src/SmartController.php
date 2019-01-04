@@ -110,30 +110,26 @@ abstract class SmartController extends AbstractController
 		}
 
 		$reflector = new ReflectionClass($controllerClass);
-		$templatesDirectoryName = str_replace('Controller', '', basename($reflector->getFileName(), '.php'));
-		$templatesDirectoryNameLower = strtolower($templatesDirectoryName);
-		$moduleDirectoryTemplatesPath =
-			str_replace($this->getRootDirectory() . '/', '', dirname($reflector->getFileName()))
-			. '/templates';
-
-		$viewTemplate = $view . '.twig';
-		$templatePath = $moduleDirectoryTemplatesPath . '/' . $viewTemplate;
+		$controllerName = str_replace('Controller', '', basename($reflector->getFileName(), '.php'));
+		$moduleTemplatesDirectoryPath =
+			str_replace($this->getRootDirectory() . '/', '', dirname($reflector->getFileName())) . '/templates';
+		$twigDefaultPath = $this->getParameter('twig.default_path');
 		$kernelRootDir = $this->getParameter('kernel.root_dir');
+		$templateName = $view . '.twig';
+		$templatePath = $templateName;
+		$templatePathOptions = [
+			$controllerName . '/' . $templateName => $twigDefaultPath,
+			$moduleTemplatesDirectoryPath . '/' . $templateName => $kernelRootDir,
+			$moduleTemplatesDirectoryPath . '/' . $controllerName . '/' . $templateName => $kernelRootDir
+		];
 
-		if ( ! file_exists($kernelRootDir . '/' . $templatePath)) {
-			$templatePath = $moduleDirectoryTemplatesPath . '/' . $templatesDirectoryName . '/' . $viewTemplate;
-		}
-
-		if ( ! file_exists($kernelRootDir . '/' . $templatePath)) {
-			$templatePath = $moduleDirectoryTemplatesPath . '/' . $templatesDirectoryNameLower . '/' . $viewTemplate;
-		}
-
-		if ( ! file_exists($kernelRootDir . '/' . $templatePath)) {
-			$templatePath = $templatesDirectoryName . '/' . $viewTemplate;
-		}
-
-		if ( ! file_exists($this->getParameter('twig.default_path') . '/' . $templatePath)) {
-			$templatePath = $templatesDirectoryNameLower . '/' . $viewTemplate;
+		if ( ! file_exists($twigDefaultPath . '/' . $templatePath)) {
+			foreach ($templatePathOptions as $templateRelativePath => $templateDirectory) {
+				if (file_exists($templateDirectory . '/' . $templateRelativePath)) {
+					$templatePath = $templateRelativePath;
+					break;
+				}
+			}
 		}
 
 		return $templatePath;
