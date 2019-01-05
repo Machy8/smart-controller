@@ -89,14 +89,13 @@ class LuckyController extends SmartController
 
 - Templates are searched in the following order: **structure** => **example path**.
 ```
+<twig default path>/template.twig => templates/lucky/template.twig
+<twig default path>/<controller name>/template.twig => templates/lucky/template.twig
 <module name>/templates/template.twig => src/Controller/templates/template.twig
-<module name>/templates/<controller name>/template.twig => src/Controller/templates/Lucky/template.twig
-<module name>/templates/<controller name (lowercase)>/template.twig => src/Controller/templates/lucky/template.twig
-<twig default path>/<controller name>/template.twig => templates/Lucky/template.twig
-<twig default path>/<controller name (lowercase)>/template.twig => templates/lucky/template.twig
+<module name>/templates/<controller name>/template.twig => src/Controller/templates/lucky/template.twig
 ```
 - The whole paths can be even more nested: **Controller path** => **template path**.
 ```
-src/Modules/AwesomeModule/FrontModule/Controller/AwesomeController.php => src/Modules/AwesomeModule/FrontModule/Controller/templates/Awesome/template.twig
 src/Modules/AwesomeModule/AdminModule/Controller/AwesomeController.php => src/Modules/AwesomeModule/AdminModule/Controller/templates/template.twig
+src/Modules/AwesomeModule/FrontModule/Controller/AwesomeController.php => src/Modules/AwesomeModule/FrontModule/Controller/templates/awesome/template.twig
 ```
