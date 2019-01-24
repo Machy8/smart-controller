@@ -110,7 +110,7 @@ abstract class SmartController extends AbstractController
 		}
 
 		$reflector = new ReflectionClass($controllerClass);
-		$controllerName = str_replace('Controller', '', basename($reflector->getFileName(), '.php'));
+		$controllerName = lcfirst(str_replace('Controller', '', basename($reflector->getFileName(), '.php')));
 		$moduleTemplatesDirectoryPath =
 			str_replace($this->getRootDirectory() . '/', '', dirname($reflector->getFileName())) . '/templates';
 		$twigDefaultPath = $this->getParameter('twig.default_path');
@@ -120,7 +120,7 @@ abstract class SmartController extends AbstractController
 		$templatePathOptions = [
 			$controllerName . '/' . $templateName => $twigDefaultPath,
 			$moduleTemplatesDirectoryPath . '/' . $templateName => $kernelRootDir,
-			$moduleTemplatesDirectoryPath . '/' . lcfirst($controllerName) . '/' . $templateName => $kernelRootDir
+			$moduleTemplatesDirectoryPath . '/' . $controllerName . '/' . $templateName => $kernelRootDir
 		];
 
 		if ( ! file_exists($twigDefaultPath . '/' . $templatePath)) {
