@@ -120,7 +120,7 @@ abstract class SmartController extends AbstractController
 		$templatePathOptions = [
 			$controllerName . '/' . $templateName => $twigDefaultPath,
 			$moduleTemplatesDirectoryPath . '/' . $templateName => $kernelRootDir,
-			$moduleTemplatesDirectoryPath . '/' . strtolower($controllerName) . '/' . $templateName => $kernelRootDir
+			$moduleTemplatesDirectoryPath . '/' . lcfirst($controllerName) . '/' . $templateName => $kernelRootDir
 		];
 
 		if ( ! file_exists($twigDefaultPath . '/' . $templatePath)) {
