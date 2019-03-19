@@ -51,12 +51,9 @@ abstract class SmartController extends AbstractController
 
 	public function getRequest(): ?Request
 	{
-		if ( ! $this->request) {
-			/** @var RequestStack $requestStack */
-			$requestStack = $this->get('request_stack');
-			$this->request = $requestStack->getCurrentRequest();
-		}
-
+		/** @var RequestStack $requestStack */
+		$requestStack = $this->get('request_stack');
+		$this->request = $requestStack->getCurrentRequest();
 		return $this->request;
 	}
 
