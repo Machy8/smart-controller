@@ -29,11 +29,6 @@ abstract class SmartController extends AbstractController
 	private $extendedController;
 
 	/**
-	 * @var Request
-	 */
-	private $request;
-
-	/**
 	 * @var string
 	 */
 	private $rootDirectory;
@@ -53,8 +48,7 @@ abstract class SmartController extends AbstractController
 	{
 		/** @var RequestStack $requestStack */
 		$requestStack = $this->get('request_stack');
-		$this->request = $requestStack->getCurrentRequest();
-		return $this->request;
+		return $requestStack->getCurrentRequest();
 	}
 
 
