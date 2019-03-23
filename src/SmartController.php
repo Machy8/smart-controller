@@ -138,7 +138,7 @@ abstract class SmartController extends AbstractController
 		$this->setTemplateParameters($parameters);
 
 		return $this->render(
-			$this->getTemplatePath(strtolower($matches['template'])),
+			$this->getTemplatePath(lcfirst($matches['template'])),
 			$this->templateParameters,
 			$response
 		);
