@@ -4,7 +4,6 @@
 Based on the article [Symfony 4: Creating Smart Controller](https://machy8.com/blog/symfony-4-creating-smart-controller). Summary:
 - Before render method - allows you to set parameters you always need
 - Template parameters - can be set from multiple places easily
-- Templates [auto-discovery](#templates-auto-discovery) - you don't need to write the template path anymore
 - Usefull methods - getRequest(), getTemplatePath(), getRootDirectory(), getTemplateParameter()
 
 ## Installation
@@ -29,29 +28,21 @@ class LuckyController extends AbstractController
 		]);
 	}
 
-}
-```
-
-and now with the **Smart Controller**.
-
-```php
-class LuckyController extends SmartController
-{
 
 	/**
-	 * @Route("/lucky/number")
+	 * @Route("/unlucky/number")
 	 */
-	public function renderNumber(): Response
+	public function unluckyNumber(): Response
 	{
-		return $this->renderTemplate([
-			'number' => random_int(0, 100)
+		return $this->render('lucky/number.twig', [
+			'number' => random_int(0, 100),
 		]);
 	}
 
 }
 ```
 
-What if we use the **beforeRender** method? The number parameter will be set into both render methods :-)
+and now with the **Smart Controller**.
 
 ```php
 class LuckyController extends SmartController
@@ -69,7 +60,7 @@ class LuckyController extends SmartController
      */
     public function renderLuckyNumber(): Response
     {
-        return $this->renderTemplate();
+        return $this->renderTemplate('lucky/number.twig');
     }
 
     /**
@@ -77,26 +68,8 @@ class LuckyController extends SmartController
      */
     public function renderUnluckyNumber(): Response
     {
-        return $this->renderTemplate();
+        return $this->renderTemplate('lucky/number.twig');
     }
 
 }
-```
-
-## Templates auto-discovery
-- Every method where renderTemplate is called must start with the prefix `render*` => `renderNumber()`, `renderHomepage()`.
-- You can get a custom template path like this `$this->getTemplatePath('lucky', LuckyController::class)`.
-
-- Templates are searched in the following order: **structure** => **example path**.
-```
-<twig default path>/template.twig => templates/lucky/template.twig
-<twig default path>/<controller name>/template.twig => templates/lucky/template.twig
-<controller path>/templates/template.twig => src/Controller/templates/template.twig
-<controller path>/templates/<controller name>/template.twig => src/Controller/templates/lucky/template.twig
-
-```
-- The whole paths can be even more nested: **Controller path** => **template path**.
-```
-src/Modules/AwesomeModule/AdminModule/Controller/AwesomeController.php => src/Modules/AwesomeModule/AdminModule/Controller/templates/template.twig
-src/Modules/AwesomeModule/FrontModule/Controller/AwesomeController.php => src/Modules/AwesomeModule/FrontModule/Controller/templates/awesome/template.twig
 ```
