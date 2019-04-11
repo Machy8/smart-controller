@@ -13,7 +13,6 @@ declare(strict_types = 1);
 
 namespace Machy8\SmartController;
 
-use ReflectionClass;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -22,11 +21,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 abstract class SmartController extends AbstractController
 {
-
-	/**
-	 * @var string
-	 */
-	private $extendedController;
 
 	/**
 	 * @var string
