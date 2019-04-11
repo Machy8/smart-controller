@@ -4,7 +4,7 @@
 Based on the article [Symfony 4: Creating Smart Controller](https://machy8.com/blog/symfony-4-creating-smart-controller). Summary:
 - Before render method - allows you to set parameters you always need
 - Template parameters - can be set from multiple places easily
-- Usefull methods - getRequest(), getTemplatePath(), getRootDirectory(), getTemplateParameter()
+- Usefull methods - getRequest(), getRootDirectory(), getTemplateParameter()
 
 ## Installation
 ```
