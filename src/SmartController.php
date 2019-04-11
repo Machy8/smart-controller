@@ -94,64 +94,17 @@ abstract class SmartController extends AbstractController
 	}
 
 
-	public function getTemplatePath(string $view, ?string $controllerClass = null): string
-	{
-		if ( ! $controllerClass) {
-			$controllerClass = $this->getExtendedController();
-		}
-
-		$reflector = new ReflectionClass($controllerClass);
-		$controllerName = lcfirst(str_replace('Controller', '', basename($reflector->getFileName(), '.php')));
-		$moduleTemplatesDirectoryPath =
-			str_replace($this->getRootDirectory() . '/', '', dirname($reflector->getFileName())) . '/templates';
-		$twigDefaultPath = $this->getParameter('twig.default_path');
-		$kernelRootDir = $this->getParameter('kernel.root_dir');
-		$templateName = $view . '.twig';
-		$templatePath = $templateName;
-		$templatePathOptions = [
-			$controllerName . '/' . $templateName => $twigDefaultPath,
-			$moduleTemplatesDirectoryPath . '/' . $templateName => $kernelRootDir,
-			$moduleTemplatesDirectoryPath . '/' . $controllerName . '/' . $templateName => $kernelRootDir
-		];
-
-		if ( ! file_exists($twigDefaultPath . '/' . $templatePath)) {
-			foreach ($templatePathOptions as $templateRelativePath => $templateDirectory) {
-				if (file_exists($templateDirectory . '/' . $templateRelativePath)) {
-					$templatePath = $templateRelativePath;
-					break;
-				}
-			}
-		}
-
-		return $templatePath;
-	}
-
-
 	/**
 	 * @param mixed[] $parameters
 	 */
-	public function renderTemplate(array $parameters = [], ?Response $response = null): Response
+	public function renderTemplate(string $templatePath, array $parameters = [], ?Response $response = null): Response
 	{
 		preg_match('/\:\:render(?<template>\S+)/', $this->getRequest()->attributes->get('_controller'), $matches);
 
 		$this->beforeRender();
 		$this->setTemplateParameters($parameters);
 
-		return $this->render(
-			$this->getTemplatePath(lcfirst($matches['template'])),
-			$this->templateParameters,
-			$response
-		);
-	}
-
-
-	private function getExtendedController(): string
-	{
-		if ( ! $this->extendedController) {
-			$this->extendedController = get_called_class();
-		}
-
-		return $this->extendedController;
+		return $this->render($templatePath, $this->templateParameters, $response);
 	}
 
 }
